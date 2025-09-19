@@ -57,7 +57,7 @@ export function GameCard({ suit, value, rank, isFlipped = false, onClick, classN
 
   return (
     <Card 
-      className={`w-16 h-24 flex flex-col items-center justify-between p-2 cursor-pointer transition-all duration-300 
+      className={`w-14 h-20 md:w-16 md:h-24 flex flex-col items-center justify-between p-1 md:p-2 cursor-pointer transition-all duration-300 
         bg-gradient-to-br from-white to-gray-50 border-2 border-game-golden
         hover:scale-105 hover:shadow-lg ${className}`}
       onClick={onClick}
@@ -69,11 +69,11 @@ export function GameCard({ suit, value, rank, isFlipped = false, onClick, classN
       </div>
       
       <div className="flex flex-col items-center">
-        <div className={`text-2xl ${getSuitColor()}`}>
+        <div className={`text-lg md:text-2xl ${getSuitColor()}`}>
           {getSuitSymbol()}
         </div>
         {(value === 'German' || value === 'Yarik' || value === 'Roma') && (
-          <div className="text-xs font-semibold text-game-brown mt-1">
+          <div className="text-xs font-semibold text-game-brown mt-1 text-center">
             {getCardName()}
           </div>
         )}

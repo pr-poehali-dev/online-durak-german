@@ -77,34 +77,34 @@ export function GameBoard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-game-wheat via-game-golden to-game-brown p-4">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
+    <div className="min-h-screen bg-gradient-to-br from-game-wheat via-game-golden to-game-brown p-2 md:p-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-3 md:gap-6">
         
         {/* Главная игровая область */}
-        <div className="lg:col-span-3 space-y-6">
+        <div className="lg:col-span-3 space-y-3 md:space-y-6">
           
           {/* Верхняя панель с информацией */}
           <Card className="bg-white/95 backdrop-blur-sm">
-            <CardContent className="p-4">
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-4">
-                  <Badge variant="secondary" className="bg-green-100 text-green-800">
+            <CardContent className="p-3 md:p-4">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
+                <div className="flex flex-wrap items-center gap-2 md:gap-4">
+                  <Badge variant="secondary" className="bg-green-100 text-green-800 text-xs md:text-sm">
                     {gameState.currentPlayer === 'player' ? 'Ваш ход' : 'Ход противника'}
                   </Badge>
-                  <div className="flex items-center gap-2">
-                    <Icon name="Cards" size={20} />
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Cards" size={16} />
                     <span>Колода: {gameState.deck}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className={`text-2xl ${gameState.trumpSuit === 'hearts' || gameState.trumpSuit === 'diamonds' ? 'text-red-600' : 'text-gray-800'}`}>
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className={`text-lg md:text-2xl ${gameState.trumpSuit === 'hearts' || gameState.trumpSuit === 'diamonds' ? 'text-red-600' : 'text-gray-800'}`}>
                       {getTrumpIcon()}
                     </span>
                     <span>Козырь</span>
                   </div>
                 </div>
-                <Button variant="outline" className="bg-white/50">
-                  <Icon name="Settings" size={16} className="mr-2" />
-                  Настройки
+                <Button variant="outline" className="bg-white/50 text-xs md:text-sm">
+                  <Icon name="Settings" size={14} className="mr-1 md:mr-2" />
+                  <span className="hidden sm:inline">Настройки</span>
                 </Button>
               </div>
             </CardContent>
@@ -153,8 +153,8 @@ export function GameBoard() {
 
           {/* Рука игрока */}
           <div className="text-center">
-            <p className="text-white font-semibold mb-2">Ваша рука</p>
-            <div className="flex justify-center gap-2">
+            <p className="text-white font-semibold mb-2 text-sm md:text-base">Ваша рука</p>
+            <div className="flex justify-center gap-1 md:gap-2 overflow-x-auto pb-2">
               {gameState.playerHand.map((card, index) => (
                 <GameCard
                   key={index}
@@ -162,54 +162,54 @@ export function GameBoard() {
                   value={card.value}
                   rank={card.rank}
                   onClick={() => console.log(`Сыграна карта: ${card.value} ${card.suit}`)}
-                  className="hover:scale-110 cursor-pointer transition-transform"
+                  className="hover:scale-110 cursor-pointer transition-transform flex-shrink-0 w-12 md:w-16 h-18 md:h-24"
                 />
               ))}
             </div>
           </div>
 
           {/* Кнопки действий */}
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-2 md:gap-4">
             <Button 
               variant="default" 
-              className="bg-green-600 hover:bg-green-700 text-white"
+              className="bg-green-600 hover:bg-green-700 text-white text-sm md:text-base"
             >
-              <Icon name="CheckCircle" size={16} className="mr-2" />
+              <Icon name="CheckCircle" size={14} className="mr-1 md:mr-2" />
               Завершить ход
             </Button>
             <Button 
               variant="outline" 
-              className="bg-white/90"
+              className="bg-white/90 text-sm md:text-base"
             >
-              <Icon name="RotateCcw" size={16} className="mr-2" />
+              <Icon name="RotateCcw" size={14} className="mr-1 md:mr-2" />
               Отменить
             </Button>
             <Button 
               variant="outline" 
-              className="bg-white/90"
+              className="bg-white/90 text-sm md:text-base"
             >
-              <Icon name="Flag" size={16} className="mr-2" />
+              <Icon name="Flag" size={14} className="mr-1 md:mr-2" />
               Сдаться
             </Button>
           </div>
         </div>
 
         {/* Боковая панель с чатом */}
-        <div className="space-y-6">
+        <div className="space-y-3 md:space-y-6">
           
           {/* Чат */}
-          <Card className="bg-white/95 backdrop-blur-sm h-96">
+          <Card className="bg-white/95 backdrop-blur-sm h-80 md:h-96">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <Icon name="MessageCircle" size={20} />
+              <CardTitle className="flex items-center gap-2 text-base md:text-lg">
+                <Icon name="MessageCircle" size={18} />
                 Чат
               </CardTitle>
             </CardHeader>
             <CardContent className="p-0">
-              <ScrollArea className="h-64 px-4">
-                <div className="space-y-3">
+              <ScrollArea className="h-48 md:h-64 px-3 md:px-4">
+                <div className="space-y-2 md:space-y-3">
                   {chatMessages.map((msg) => (
-                    <div key={msg.id} className="text-sm">
+                    <div key={msg.id} className="text-xs md:text-sm">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="font-semibold text-game-brown">{msg.player}:</span>
                         <span className="text-xs text-gray-500">
@@ -221,21 +221,21 @@ export function GameBoard() {
                   ))}
                 </div>
               </ScrollArea>
-              <div className="p-4 border-t">
+              <div className="p-3 md:p-4 border-t">
                 <div className="flex gap-2">
                   <Input
-                    placeholder="Написать сообщение..."
+                    placeholder="Сообщение..."
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    className="text-sm"
+                    className="text-xs md:text-sm"
                   />
                   <Button 
                     onClick={sendMessage}
                     size="sm"
                     className="bg-game-golden hover:bg-game-brown text-white"
                   >
-                    <Icon name="Send" size={16} />
+                    <Icon name="Send" size={14} />
                   </Button>
                 </div>
               </div>
