@@ -61,6 +61,17 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				game: {
+					brown: '#8B4513',
+					golden: '#DAA520',
+					wheat: '#2F4F23',
+					darkred: '#880000',
+					gradient: {
+						start: '#DAA520',
+						mid: '#B8860B',
+						end: '#8B4513'
+					}
 				}
 			},
 			borderRadius: {
